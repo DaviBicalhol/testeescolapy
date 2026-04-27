@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turma {{ numero_turma }} - Escola Dom Bosco</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container-turma {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header-turma {
+            margin-bottom: 40px;
+        }
+
+        .header-turma h1 {
+            color: #23ad11;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header-turma p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .grid-registros {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card-registro {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .card-registro:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-registro img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 3px solid #23ad11;
+        }
+
+        .info-registro {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .info-registro h3 {
+            color: #333;
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+        }
+
+        .info-registro p {
+            color: #888;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .btn-voltar {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 25px;
+            background: #23ad11;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-voltar:hover {
+            background: #1a880d;
+        }
+
+        .sem-fotos {
+            padding: 50px;
+            color: #bbb;
+        }
+
+        .sem-fotos i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="grid-registros">
+    {% for foto in fotos %}
+    <div class="card-registro" style="border: 1px solid #eee; border-radius: 10px; margin-bottom: 20px; padding: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        
+        <img src="{{ url_for('static', filename='img/uploads/galeria/' + foto['nome_arquivo']) }}" 
+             alt="Registro de Aula" style="width: 100%; border-radius: 8px;">
+
+        <div class="info-registro" style="padding: 10px;">
+            <h3 style="color: #23ad11; margin: 5px 0;">{{ foto['materia'] }}</h3>
+
+            {% if foto['descricao'] %}
+                <p style="color: #444; font-size: 0.95rem; line-height: 1.4; margin: 10px 0; border-left: 3px solid #23ad11; padding-left: 10px; font-style: italic;">
+                    {{ foto['descricao'] }}
+                </p>
+            {% else %}
+                <p style="color: #bbb; font-size: 0.8rem; margin: 5px 0;">(Sem descrição para esta foto)</p>
+            {% endif %}
+
+            <p style="font-size: 0.85rem; color: #666;">
+                <i class="far fa-calendar-alt"></i> {{ foto['data_postagem'] }}
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>

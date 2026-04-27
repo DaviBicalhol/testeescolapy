@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Galeria de Estudos - Dom Bosco</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Galeria de Registros</h1>
+    <div class="container-galeria" style="display: flex; flex-wrap: wrap; gap: 20px; padding: 20px;">
+        {% for foto in fotos %}
+        <div class="card-foto" style="border: 1px solid #ddd; padding: 10px; border-radius: 8px; width: 300px;">
+            <img src="{{ url_for('static', filename='img/uploads/galeria/' + foto['nome_arquivo']) }}" style="width: 100%; border-radius: 5px;">
+            <h3>{{ foto['materia'] }}</h3>
+            <p>Turma: {{ foto['turma'] }}</p>
+            <small>Postado em: {{ foto['data_postagem'] }}</small>
+        </div>
+        {% endfor %}
+    </div>
+    <a href="/">Voltar para o Início</a>
+</body>
+</html>

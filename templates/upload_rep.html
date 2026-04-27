@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Registros - Dom Bosco</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            background-color: #f4f7f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+            margin: 0;
+        }
+
+        .upload-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .header-upload {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .header-upload h2 {
+            color: #333;
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .badge-turma {
+            background: #ffd700;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .input-group select,
+        .input-group input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
+        .file-dica {
+            font-size: 0.8rem;
+            color: #888;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .btn-enviar {
+            width: 100%;
+            padding: 15px;
+            background: #23ad11;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-enviar:hover {
+            background: #1a880d;
+            transform: translateY(-2px);
+        }
+
+        .btn-sair {
+            display: inline-block;
+            margin-top: 25px;
+            color: #dc3545;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn-sair:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="upload-container">
+        <div class="header-upload">
+            <h2>Postar Registro</h2>
+            <span class="badge-turma">Turma {{ turma }}</span>
+        </div>
+
+        <form action="{{ url_for('upload_foto') }}" method="POST" enctype="multipart/form-data">
+            <div class="input-group">
+                <label>Qual matéria foi registrada?</label>
+                <select name="materia" required>
+                    <option value="" disabled selected>Selecione a disciplina...</option>
+                    <option value="Português">Português</option>
+                    <option value="Matemática">Matemática</option>
+                    <option value="Ciências">Ciências</option>
+                    <option value="História">História</option>
+                    <option value="Geografia">Geografia</option>
+                    <option value="Inglês">Inglês</option>
+                    <option value="Arte">Arte</option>
+                    <option value="Ed. Física">Educação Física</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Descrição (Opcional):</label>
+                <textarea name="descricao_foto" placeholder="Ex: Matéria da prova, avisos do quadro..." rows="2"
+                    style="width: 100%; border-radius: 8px; border: 1px solid #ddd; padding: 10px;"></textarea>
+            </div>
+            <div class="input-group">
+                <label>Anexar Foto do Quadro ou Atividade:</label>
+                <input type="file" name="arquivo_foto" accept="image/png, image/jpeg, image/jpg" required>
+                <span class="file-dica">Formatos aceitos: JPG ou PNG. Tire a foto em local iluminado.</span>
+            </div>
+
+            <button type="submit" class="btn-enviar">
+                <i class="fas fa-cloud-upload-alt"></i> Salvar na Galeria
+            </button>
+        </form>
+
+        <div style="text-align: center;">
+            <a href="{{ url_for('logout') }}" class="btn-sair">
+                <i class="fas fa-sign-out-alt"></i> Encerrar Sessão
+            </a>
+        </div>
+    </div>
+    <hr>
+    <h2>Gerenciar Fotos Postadas</h2>
+
+    <div class="painel-gerenciamento">
+        {% if fotos %}
+        {% for foto in fotos %}
+        <div
+            style="display: flex; align-items: center; justify-content: space-between; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; border-radius: 8px;">
+
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <img src="{{ url_for('static', filename='img/uploads/galeria/' + foto['nome_arquivo']) }}"
+                    style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px;">
+
+                <div>
+                    <strong style="color: #23ad11;">{{ foto['materia'] }}</strong><br>
+                    <small>Postado em: {{ foto['data_postagem'] }}</small>
+                </div>
+            </div>
+
+            <a href="{{ url_for('deletar_foto', id_foto=foto['id']) }}"
+                onclick="return confirm('Tem certeza que deseja apagar esta foto?')"
+                style="background-color: #ff4d4d; color: white; padding: 8px 12px; border-radius: 5px; text-decoration: none; font-weight: bold;">
+                Excluir
+            </a>
+
+        </div>
+        {% endfor %}
+        {% else %}
+        <p style="color: #888;">Sua turma ainda não tem fotos publicadas.</p>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

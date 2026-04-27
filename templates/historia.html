@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa História - EMDB</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <main>
+        <section id="quemsomos" class="secao">
+            <div class="container">
+                <h2>Nossa História</h2>
+                <p class="sobre-paragrafo">
+                    O Projeto Político Pedagógico (PPP) da Escola Municipal Dom Bosco registra uma trajetória de
+                    compromisso com a comunidade desde sua concepção.
+                </p>
+
+                <div class="bloco-historia">
+                    <div class="historia-texto">
+                        <h3>O Marco Zero: Preparando o Terreno</h3>
+                        <p>Antes das colunas e das salas de aula, houve um intenso trabalho de terraplanagem. Estas
+                            imagens
+                            de 2005 e 2006 mostram o início das escavações no local onde a Escola Dom Bosco seria
+                            erguida.
+                        </p>
+                    </div>
+                    <div class="historia-imagem">
+                        <img src="{{ url_for('static', filename='img/fundação1.jpg') }}"
+                            alt="Vista panorâmica do terreno no início das obras">
+                        <p class="legenda-foto"><em>Maio de 2005: Os primeiros movimentos de terra no terreno
+                                original.</em></p>
+                    </div>
+                </div>
+
+                <div class="bloco-historia inverter">
+                    <div class="historia-texto">
+                        <h3>Bases Fortes para a Educação</h3>
+                        <p>Com o maquinário pesado em campo, as fundações profundas começaram a ser perfuradas. Cada
+                            estaca
+                            colocada ali representava a base sólida de um projeto educacional para toda a comunidade.
+                        </p>
+                    </div>
+                    <div class="historia-imagem">
+                        <img src="{{ url_for('static', filename='img/fundação002.png') }}"
+                            alt="Maquinário de perfuração no canteiro de obras">
+                        <p class="legenda-foto"><em>Perfuração das bases e estruturação do canteiro de obras.</em></p>
+                    </div>
+                </div>
+
+                <div class="bloco-historia">
+                    <div class="historia-texto">
+                        <h3>Erguendo as Colunas</h3>
+                        <p>As primeiras colunas de sustentação simbolizavam a força da união entre a prefeitura e os
+                            moradores da região do Dom Bosco.</p>
+                    </div>
+                    <div class="historia-imagem">
+                        <img src="{{ url_for('static', filename='img/fundação2.jpg') }}"
+                            alt="Colunas de sustentação da escola">
+                        <p class="legenda-foto"><em>O surgimento das primeiras estruturas de concreto.</em></p>
+                    </div>
+                </div>
+
+                <div class="bloco-historia inverter">
+                    <div class="historia-texto">
+                        <h3>Um Sonho do Orçamento Participativo</h3>
+                        <p>A placa oficial registrava não apenas números, mas a conquista de um investimento sonhado por
+                            centenas de famílias através do Orçamento Participativo da PBH.</p>
+                    </div>
+                    <div class="historia-imagem">
+                        <img src="{{ url_for('static', filename='img/fundaçãoo3.jpg') }}"
+                            alt="Placa da Prefeitura de Belo Horizonte">
+                        <p class="legenda-foto"><em>Placa indicativa da obra: investimento direto na educação.</em></p>
+                    </div>
+                </div>
+
+                <div class="bloco-historia">
+                    <div class="historia-texto">
+                        <h3>Ganhando Altura e Vida</h3>
+                        <p>Com o passar dos meses, o esqueleto de metal e madeira deu lugar à imponente estrutura de
+                            três andares que hoje abriga nossas salas de aula.</p>
+                    </div>
+                    <div class="historia-imagem">
+                        <img src="{{ url_for('static', filename='img/fundação4.jpg') }}"
+                            alt="Obra da escola em estágio avançado">
+                        <p class="legenda-foto"><em>A escola ganhando sua forma definitiva sob o céu de BH.</em></p>
+                    </div>
+                </div>
+
+                <div class="bloco-historia inverter">
+                    <div class="historia-texto">
+                        <h3>Pronta para Educar</h3>
+                        <p>Agosto de 2007: o prédio estava concluído. Uma estrutura moderna, pintada com as cores que se
+                            tornariam referência de ensino na região.</p>
+                    </div>
+                    <div class="historia-imagem">
+                        <img src="{{ url_for('static', filename='img/fundação5.jpg') }}"
+                            alt="Fachada da escola recém construída">
+                        <p class="legenda-foto"><em>Fachada original da EMDB em agosto de 2007.</em></p>
+                    </div>
+                </div>
+
+                <div class="bloco-historia">
+                    <div class="historia-texto">
+                        <h3>A Inauguração Oficial</h3>
+                        <p>O descerramento da placa foi o ápice de uma jornada de solidariedade. Professores, alunos e
+                            autoridades celebraram o nascimento da Escola Municipal Dom Bosco.</p>
+                    </div>
+                    <div class="historia-imagem">
+                        <img src="{{ url_for('static', filename='img/fundação6.jpg') }}"
+                            alt="Cerimônia de inauguração da escola">
+                        <p class="legenda-foto"><em>Cerimônia de entrega da escola à comunidade.</em></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+   <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escola Municipal Dom Bosco</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='img/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='img/favicon-16x16.png') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='img/apple-touch-icon.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+
+</head>
+
+<body>
+
+    <header class="header-principal">
+        <div class="container-header">
+            <div class="logo">
+                <a href="#inicio">
+                    <img src="{{ url_for('static', filename='img/logo.emdb.png') }}" alt="Logo Escola Dom Bosco"
+                        class="logo-img">
+                </a>
+            </div>
+            <nav class="navegacao">
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <a href="{{ url_for('historia') }}">Conheça nossa história</a>
+                    <li><a href="#servicos">Sobre Nós</a></li>
+                    <li><a href="#avisos">Avisos</a></li>
+                    <li><a href="#contatos">Contato</a></li>
+
+                    <li>
+                        <a href="{{ url_for('login_rep') }}" class="btn-login-rep">
+                            <i class="fas fa-user-lock"></i> Área do Representante
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="hero-overlay">
+                <div class="hero-conteudo">
+                    <h1>Escola Municipal Dom Bosco</h1>
+                    <p>Uma história de fé, solidariedade e educação</p>
+                    <a href="{{ url_for('historia') }}" class="btn-saiba-mais">Conheça nossa história</a>
+                </div>
+            </div>
+        </section>
+        <div class="banner-escola">
+            <img src="{{ url_for('static', filename='img/imagemfrenteescola.png') }}" class="slide-foto active"
+                alt="Frente da Escola">
+            <img src="{{ url_for('static', filename='img/biblioteca-emdb.jpg') }}" class="slide-foto"
+                alt="Interior da Escola">
+            <img src="{{ url_for('static', filename='img/auditorio-escola.jpg') }}" class="slide-foto"
+                alt="Interior da Escola">
+            <img src="{{ url_for('static', filename='img/patio1-escola.jpg') }}" class="slide-foto"
+                alt="Interior da Escola">
+            <img src="{{ url_for('static', filename='img/patio2-escola.jpg') }}" class="slide-foto"
+                alt="Interior da Escola">
+            <img src="{{ url_for('static', filename='img/quadra-peteca.jpg') }}" class="slide-foto"
+                alt="Interior da Escola">
+            <img src="{{ url_for('static', filename='img/quadra-principal.jpg') }}" class="slide-foto"
+                alt="Interior da Escola">
+            <img src="{{ url_for('static', filename='img/quadra-sintetica.jpg') }}" class="slide-foto"
+                alt="Interior da Escola">
+        </div>
+
+        <div class="dots-container">
+            <span class="dot active" onclick="irParaSlide(0)"></span>
+            <span class="dot" onclick="irParaSlide(1)"></span>
+            <span class="dot" onclick="irParaSlide(2)"></span>
+            <span class="dot" onclick="irParaSlide(3)"></span>
+            <span class="dot" onclick="irParaSlide(4)"></span>
+            <span class="dot" onclick="irParaSlide(5)"></span>
+            <span class="dot" onclick="irParaSlide(6)"></span>
+            <span class="dot" onclick="irParaSlide(7)"></span>
+        </div>
+        </div>
+
+
+        <section id="servicos" class="secao-cinza">
+            <div class="container">
+                <h2>Sobre a nossa escola</h2>
+                <div class="grid-servicos">
+                    <div class="card">
+                        <div class="card-icone">📚</div>
+                        <h3>Ensino Fundamental</h3>
+                        <p>Foco na excelência acadêmica e desenvolvimento humano. 1° ao 9° ano.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icone">💻</div>
+                        <h3>Laboratório de informática</h3>
+                        <p>Espaço equipado para o desenvolvimento do pensamento computacional e inclusão digital.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icone">📖</div>
+                        <h3>Biblioteca</h3>
+                        <p>Um vasto acervo para incentivar a leitura e apoiar pesquisas acadêmicas.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icone">🎭</div>
+                        <h3>Auditório Multiuso</h3>
+                        <p>Ambiente para palestras e eventos que integram a escola e a comunidade.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icone">🏀</div>
+                        <h3>Escola Integrada</h3>
+                        <p>Atividades complementares que integram e educam.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icone">🤝</div>
+                        <h3>Projeto AEE e PAS</h3>
+                        <p>Ações de solidariedade.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="calendario" class="secao">
+            <div class="container">
+                <h2>Calendário de Eventos</h2>
+                <p>Fique atento às datas importantes do nosso ano letivo.</p>
+
+                <div class="calendario-grade" id="lista-eventos">
+                </div>
+                <div class="container-link-calendario">
+                    <a href="{{ url_for('static', filename='doc/Calendário Escolar 2026 - EMDB.pdf') }}"
+                        class="btn-calendario-completo" target="_blank">
+                        Visualizar Calendário Anual Completo (PDF)
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="avisos" class="secao-cinza">
+            <div class="container">
+                <h2>Bilhetes por Turma</h2>
+                <p>Selecione a turma para visualizar as comunicações diárias.</p>
+
+                <div class="container-turno">
+                    <h3 class="titulo-turno">☀️ Turno da Manhã</h3>
+                    <div class="grid-turmas">
+                        <button class="btn-turma" onclick="abrirLogin('406')">406</button>
+                        <button class="btn-turma" onclick="abrirLogin('407')">407</button>
+                        <button class="btn-turma" onclick="abrirLogin('415')">415</button>
+                        <button class="btn-turma" onclick="abrirLogin('416')">416</button>
+                        <button class="btn-turma" onclick="abrirLogin('512')">512</button>
+                        <button class="btn-turma" onclick="abrirLogin('513')">513</button>
+                        <button class="btn-turma" onclick="abrirLogin('514')">514</button>
+                        <button class="btn-turma" onclick="abrirLogin('601')">601</button>
+                        <button class="btn-turma" onclick="abrirLogin('602')">602</button>
+                        <button class="btn-turma" onclick="abrirLogin('603')">603</button>
+                        <button class="btn-turma" onclick="abrirLogin('704')">704</button>
+                        <button class="btn-turma" onclick="abrirLogin('705')">705</button>
+                        <button class="btn-turma" onclick="abrirLogin('809')">809</button>
+                        <button class="btn-turma" onclick="abrirLogin('811')">811</button>
+                        <button class="btn-turma" onclick="abrirLogin('908')">908</button>
+                        <button class="btn-turma" onclick="abrirLogin('910')">910</button>
+                    </div>
+                </div>
+
+                <div class="container-turno">
+                    <h3 class="titulo-turno">🌤️ Turno da Tarde</h3>
+                    <div class="grid-turmas">
+                        <button class="btn-turma" onclick="abrirLogin('112')">112</button>
+                        <button class="btn-turma" onclick="abrirLogin('113')">113</button>
+                        <button class="btn-turma" onclick="abrirLogin('114')">114</button>
+                        <button class="btn-turma" onclick="abrirLogin('205')">205</button>
+                        <button class="btn-turma" onclick="abrirLogin('206')">206</button>
+                        <button class="btn-turma" onclick="abrirLogin('207')">207</button>
+                        <button class="btn-turma" onclick="abrirLogin('304')">304</button>
+                        <button class="btn-turma" onclick="abrirLogin('315')">315</button>
+                        <button class="btn-turma" onclick="abrirLogin('316')">316</button>
+                        <button class="btn-turma" onclick="abrirLogin('601 (Tarde)')">601</button>
+                        <button class="btn-turma" onclick="abrirLogin('602 (Tarde)')">602</button>
+                        <button class="btn-turma" onclick="abrirLogin('709')">709</button>
+                        <button class="btn-turma" onclick="abrirLogin('710')">710</button>
+                        <button class="btn-turma" onclick="abrirLogin('803')">803</button>
+                        <button class="btn-turma" onclick="abrirLogin('908 (Tarde)')">908</button>
+                        <button class="btn-turma" onclick="abrirLogin('911')">911</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="modalBilhetes" class="modal">
+        <div class="modal-conteudo">
+            <span class="fechar" onclick="fecharModal()">×</span>
+            <h2 id="tituloTurma">Turma 000</h2>
+
+            <div id="areaLogin">
+                <p class="sub-aviso">Esta área é restrita. Digite a senha da turma:</p>
+                <input type="password" id="campoSenha" placeholder="Senha de 3 dígitos">
+                <button class="btn-portal" id="btnConfirmarSenha">Entrar</button>
+                <p id="mensagemErro" style="color: #ff0000; font-size: 0.8rem; margin-top: 10px; display: none;">
+                    Senha incorreta, tente novamente!
+                </p>
+            </div>
+
+            <div id="areaConteudo" style="display: none;">
+                <h3 id="boasVindasTurma" style="text-align: center; color: var(--cor-primaria); margin-bottom: 20px;">
+                </h3>
+                <style>
+                    /* Estilo direto no HTML para forçar a renderização */
+                    .btn-menu-forca-bruta {
+                        background-color: #f8f9fa !important;
+                        border: 2px solid #23ad11 !important;
+                        /* O verde do seu site */
+                        color: #333 !important;
+                        padding: 15px 20px !important;
+                        font-size: 1.1rem !important;
+                        font-weight: bold !important;
+                        border-radius: 10px !important;
+                        cursor: pointer !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        gap: 10px !important;
+                        width: 100% !important;
+                        margin-bottom: 10px !important;
+                        position: relative !important;
+                        z-index: 9999 !important;
+                    }
+
+                    .btn-menu-forca-bruta:hover {
+                        background-color: #23ad11 !important;
+                        color: white !important;
+                    }
+
+                    .btn-amarelo {
+                        border-color: #ffd700 !important;
+                    }
+
+                    .btn-amarelo:hover {
+                        background-color: #ffd700 !important;
+                        color: black !important;
+                    }
+                </style>
+
+                <div id="menuEscolha" style="display: flex; flex-direction: column; padding: 10px;">
+                    <button onclick="mostrarSecao('avisos')" class="btn-menu-forca-bruta">
+                        📢 Avisos Administrativos
+                    </button>
+                    <button onclick="mostrarSecao('galeria')" class="btn-menu-forca-bruta btn-amarelo">
+                        📸 Registros de Aula
+                    </button>
+                </div>
+
+
+                <div id="secaoAvisos" style="display: none;">
+                    <button onclick="voltarAoMenu()" class="btn-voltar"><i class="fas fa-arrow-left"></i> Voltar ao
+                        Menu</button>
+                    <p class="sub-aviso" style="margin-top: 15px;">Confira os avisos e bilhetes diários abaixo:</p>
+
+                    <div class="navegacao-bilhetes">
+                        <button id="btnAnterior" class="btn-seta" onclick="mudarBilhete(-1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div id="listaBilhetes" class="lista-avisos"></div>
+                        <button id="btnProximo" class="btn-seta" onclick="mudarBilhete(1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <p id="indicadorBilhete" class="contador-avisos"></p>
+                </div>
+                <div id="secaoGaleria" style="display: none;">
+                    <button onclick="voltarAoMenu()" class="btn-voltar"><i class="fas fa-arrow-left"></i> Voltar ao
+                        Menu</button>
+
+                <div class="filtros-galeria" style="display: flex; gap: 10px; margin: 15px 0; flex-wrap: wrap;">
+                        <select id="filtroMateria" onchange="aplicarFiltros()"
+                            style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #23ad11;">
+                            <option value="">Todas as Matérias</option>
+                            <option value="Português">Português</option>
+                            <option value="Matemática">Matemática</option>
+                            <option value="Ciências">Ciências</option>
+                            <option value="História">História</option>
+                            <option value="Geografia">Geografia</option>
+                            <option value="Inglês">Inglês</option>
+                            <option value="Arte">Arte</option>
+                            <option value="Ed. Física">Educação Física</option>
+                        </select>
+
+                        <input type="date" id="filtroData" onchange="aplicarFiltros()"
+                            style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #23ad11;">
+
+                        <button onclick="limparFiltros()"
+                            style="background: #f44336; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer;">
+                            <i class="fas fa-eraser"></i>
+                        </button>
+                </div>
+
+                    <div id="galeriaFotos" class="grid-fotos"></div>
+                <div id="galeriaFotos" class="grid-fotos"></div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <footer class="rodape">
+        <div class="container container-rodape">
+            <div class="rodape-info">
+                <img src="{{ url_for('static', filename='img/logo.emdb.png') }}" alt="Logo Escola Dom Bosco"
+                    class="logo-rodape">
+                <p>Educação de qualidade e compromisso com o futuro da nossa comunidade.</p>
+            </div>
+            <div class="rodape-contatos" id="contatos">
+                <h4>Contatos</h4>
+                <ul>
+                    <li><strong>📞 Telefone:</strong> <a href="tel:31988883295">(31) 98888-3295</a></li>
+                    <li><strong>✉️ E-mail:</strong> <a href="mailto:emdb@edu.pbh.gov.br">emdb@edu.pbh.gov.br</a>
+                    </li>
+                    <li>
+                        <strong>📍 Endereço:</strong>
+                        <a href="https://maps.google.com/?q=Rua+Bicuíba,100,Dom+Bosco,Belo+Horizonte" target="_blank">
+                            Rua Bicuíba, 100 – Dom Bosco, BH - MG
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="rodape-social">
+                <h4>Siga nossos canais</h4>
+                <div class="icones-sociais">
+                    <a href="https://www.facebook.com/people/Escola-Municipal-Dom-Bosco/100057627992665/"
+                        target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/emdb.bh/" target="_blank" title="Instagram"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/5531988883295" target="_blank" title="WhatsApp"><i
+                            class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="direitos-autorais">
+            <div class="container">
+                <p>&copy; 2026 Escola Municipal Dom Bosco. Todos os direitos reservados.</p>
+                <p class="dev-credito">Desenvolvido por <strong>Davi Bicalho de Lima</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="btnTopo" onclick="voltarAoTopo()" title="Voltar ao Topo">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+</body>
+
+</html>

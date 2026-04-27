@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Portal do Representante</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    body {
+      background-color: #f4f7f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-box {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      border-top: 8px solid #23ad11;
+      /* Sua cor primária */
+    }
+
+    .login-box img {
+      width: 120px;
+      margin-bottom: 20px;
+    }
+
+    .login-box h2 {
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .login-box p {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 25px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #555;
+    }
+
+    .input-group select,
+    .input-group input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    .input-group select:focus,
+    .input-group input:focus {
+      border-color: #23ad11;
+      outline: none;
+    }
+
+    .btn-entrar {
+      width: 100%;
+      padding: 15px;
+      background: #23ad11;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-entrar:hover {
+      background: #1a880d;
+    }
+
+    .voltar {
+      display: block;
+      margin-top: 20px;
+      color: #888;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .voltar:hover {
+      color: #23ad11;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-box">
+    <img src="{{ url_for('static', filename='img/logo.emdb.png') }}" alt="Logo Dom Bosco" />
+    <h2>Área Restrita</h2>
+    <p>Acesso exclusivo para representantes de turma.</p>
+
+    <form action="{{ url_for('login_rep') }}" method="POST">
+      {% if erro %}
+      <div
+        style="background-color: #ffcccc; color: #cc0000; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center; font-size: 14px;">
+        <i class="fas fa-exclamation-triangle"></i> {{ erro }}
+      </div>
+      {% endif %}
+
+      <div class="input-group">
+        <label>Selecione a Turma:</label>
+        <select name="turma" required>
+          <option value="" disabled selected>Escolha sua turma...</option>
+
+          <optgroup label="Turno da Manhã">
+            <option value="601">601 - Manhã</option>
+            <option value="602">602 - Manhã</option>
+            <option value="603">603 - Manhã</option>
+            <option value="704">704 - Manhã</option>
+            <option value="705">705 - Manhã</option>
+            <option value="809">809 - Manhã</option>
+            <option value="811">811 - Manhã</option>
+            <option value="908">908 - Manhã</option>
+            <option value="910">910 - Manhã</option>
+          </optgroup>
+
+          <optgroup label="Turno da Tarde">
+            <option value="601 (Tarde)">601 - Tarde</option>
+            <option value="602 (Tarde)">602 - Tarde</option>
+            <option value="709">709 - Tarde</option>
+            <option value="710">710 - Tarde</option>
+            <option value="803">803 - Tarde</option>
+            <option value="908 (Tarde)">908 - Tarde</option>
+            <option value="911">911 - Tarde</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>Senha de Acesso:</label>
+        <input type="password" name="senha" placeholder="Digite a senha fornecida" required />
+      </div>
+
+      <button type="submit" class="btn-entrar"><i class="fas fa-sign-in-alt"></i> Acessar Portal</button>
+    </form>
+
+    <a href="/" class="voltar"><i class="fas fa-arrow-left"></i> Voltar ao site principal</a>
+  </div>
+</body>
+
+</html>
