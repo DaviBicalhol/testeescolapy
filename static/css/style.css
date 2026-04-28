@@ -819,36 +819,37 @@ body {
    ============================================================ */
 
 .btn-login-rep {
-    background-color: var(--cor-primaria) !important; 
-    color: white !important;
-    padding: 10px 18px !important;
-    border-radius: 8px;
-    font-weight: bold;
+    background-color: transparent !important; 
+    color: var(--cor-primaria) !important;    
+    padding: 6px 14px !important;            
+    border: 1.5px solid var(--cor-primaria); 
+    border-radius: 6px;                      
+    font-weight: 600;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    text-transform: uppercase;
-    font-size: 0.8rem !important; 
+    gap: 6px;
+    transition: all 0.2s ease;
+    text-transform: none;                   
+    font-size: 0.85rem !important; 
+    box-shadow: none;                        
 }
 
 .btn-login-rep:hover {
-    background-color: #1a880d !important; 
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    color: white !important;
+    background-color: var(--cor-primaria) !important; 
+    color: white !important;               
+    transform: none;                       
+    box-shadow: none;
 }
 
-/* Ajuste para o botão não quebrar a tela em celulares */
+/* No mobile, ele vira um botão de largura total */
 @media (max-width: 768px) {
     .btn-login-rep {
-        margin-top: 10px;
+        margin-top: 15px;
         width: 100%;
         justify-content: center;
+        border-color: #ddd;                  
     }
 }
-
 #galeriaFotos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
