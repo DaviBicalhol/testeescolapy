@@ -819,37 +819,38 @@ body {
    ============================================================ */
 
 .btn-login-rep {
-    background-color: transparent !important; 
-    color: var(--cor-primaria) !important;    
-    padding: 6px 14px !important;            
-    border: 1.5px solid var(--cor-primaria); 
-    border-radius: 6px;                      
-    font-weight: 600;
+    background-color: var(--cor-primaria) !important; 
+    color: white !important;
+    padding: 10px 18px !important;
+    border-radius: 8px;
+    font-weight: bold;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    transition: all 0.2s ease;
-    text-transform: none;                   
-    font-size: 0.85rem !important; 
-    box-shadow: none;                        
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-transform: uppercase;
+    font-size: 0.8rem !important; 
 }
 
 .btn-login-rep:hover {
-    background-color: var(--cor-primaria) !important; 
-    color: white !important;               
-    transform: none;                       
-    box-shadow: none;
+    background-color: #1a880d !important; 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    color: white !important;
 }
 
-/* No mobile, ele vira um botão de largura total */
 @media (max-width: 768px) {
     .btn-login-rep {
-        margin-top: 15px;
+        margin-top: 10px;
         width: 100%;
         justify-content: center;
-        border-color: #ddd;                  
+        font-size: 0.65rem  !important  ;
+        padding: 6px 14px !important ;
+        gap: 5px;
     }
 }
+
 #galeriaFotos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
