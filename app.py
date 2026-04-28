@@ -28,15 +28,12 @@ def login_rep():
         turma_digitada = request.form.get('turma')
         senha_digitada = request.form.get('senha')
 
-        # Verifica se a turma existe no dicionário e se a senha bate
         if turma_digitada in SENHAS_REPRESENTANTES and SENHAS_REPRESENTANTES[turma_digitada] == senha_digitada:
-            # Salva o usuário na 'sessão' (memória do navegador)
             session['representante_logado'] = turma_digitada
-            return redirect(url_for('upload_rep')) # Manda para a área restrita
+            return redirect(url_for('upload_rep')) 
         else:
             erro = "Turma ou senha incorretos. Tente novamente."
 
-    # Se for GET (apenas abrindo a página) ou se deu erro, mostra o login
     return render_template('login_rep.html', erro=erro)
 
 # ============================================================
@@ -46,33 +43,25 @@ def login_rep():
 def upload_rep():
     if 'representante_logado' not in session:
         return redirect(url_for('login_rep'))
-    
-    # Forçamos a turma a ser uma string para o banco não se confundir
+ 
     turma = str(session['representante_logado'])
     
     conn = conectar_banco()
-    # Buscamos as fotos. Se no banco estiver como número, o SQLite converte 
-    # automaticamente ao comparar com a string da variável 'turma'
     fotos_turma = conn.execute('SELECT * FROM galeria WHERE turma = ? ORDER BY id DESC', (turma,)).fetchall()
     conn.close()
     
     return render_template('upload_rep.html', turma=turma, fotos=fotos_turma)
 
-
-# 👉 ADICIONE ESSA ROTA AQUI:
 @app.route('/historia')
 def historia():
     return render_template('historia.html')
 
-# Configuração correta baseada na sua estrutura de pastas
 UPLOAD_FOLDER = os.path.join('static', 'img', 'uploads', 'galeria')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
-# Isso aqui é importante: ele cria as pastas automaticamente se elas sumirem
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# Simulação das senhas dos representantes
 SENHAS_REPRESENTANTES = {
     
     #TURMAS MANHÃ
@@ -94,7 +83,6 @@ def exibir_turma(id_turma):
     fotos = conn.execute('SELECT * FROM galeria WHERE turma = ? ORDER BY id DESC', (id_turma,)).fetchall()
     conn.close()
     
-    # --- LINHA DE TESTE: VAI APARECER NO TERMINAL DO VS CODE ---
     if fotos:
         print(f"DEBUG: Colunas encontradas: {fotos[0].keys()}")
         print(f"DEBUG: Conteudo da primeira descricao: {fotos[0]['descricao']}")
@@ -125,7 +113,6 @@ def iniciar_banco():
     conn.commit()
     conn.close()
 
-# Inicia o banco assim que o app rodar
 iniciar_banco()
 
 def allowed_file(filename):
@@ -138,33 +125,27 @@ def logout():
     return redirect(url_for('index'))
 
 # ==========================================
-# 3. PROCESSAMENTO DE UPLOAD (A "Mágica")
+# 3. PROCESSAMENTO DE UPLOAD 
 # ==========================================
 
 @app.route('/upload_foto', methods=['POST'])
 def upload_foto():
-    # 1. Verifica se o representante está logado
     if 'representante_logado' not in session:
         return redirect(url_for('login_rep'))
 
-    # 2. Pega os dados do formulário (incluindo a nova descrição)
     turma = session['representante_logado']
     materia = request.form.get('materia')
-    descricao = request.form.get('descricao_foto') # Pega o texto do seu novo campo
+    descricao = request.form.get('descricao_foto') 
     file = request.files.get('arquivo_foto')
 
-    # 3. Verifica se o arquivo é válido
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
-        # Cria um nome único com data e hora
         timestamp = datetime.now().strftime('%Y%m%d%H%M%S_')
         nome_final = timestamp + filename
         
-        # 4. Salva a imagem na pasta física
         caminho_completo = os.path.join(app.config['UPLOAD_FOLDER'], nome_final)
         file.save(caminho_completo)
 
-        # 5. Salva TUDO no banco de dados (agora com 5 valores)
         conn = conectar_banco()
         conn.execute('''
             INSERT INTO galeria (turma, materia, descricao, nome_arquivo, data_postagem)
@@ -173,21 +154,17 @@ def upload_foto():
         conn.commit()
         conn.close()
 
-        # 6. Redireciona de volta para a página de sucesso
         return redirect(url_for('upload_rep'))
     
-    # Se der erro no arquivo
     return "Erro: Formato de arquivo inválido ou nenhum arquivo selecionado."
 
 @app.route('/galeria')
 def galeria():
     conn = conectar_banco()
-    # Pega todas as fotos, começando pela mais recente
     fotos = conn.execute('SELECT * FROM galeria ORDER BY id DESC').fetchall()
     conn.close()
     return render_template('galeria.html', fotos=fotos)
 
-# Esta rota é a "ponte" entre o Banco de Dados e o seu JavaScript do Modal
 @app.route('/api/fotos/<turma>')
 def api_fotos(turma):
     conn = conectar_banco()
@@ -198,14 +175,13 @@ def api_fotos(turma):
     for f in fotos:
         lista.append({
             'materia': f['materia'],
-            'nome_arquivo': f['nome_arquivo'], # JS usa f.nome_arquivo
-            'data_postagem': f['data_postagem'], # JS usa f.data_postagem
-            'descricao': f['descricao'] # O CAMPO NOVO!
+            'nome_arquivo': f['nome_arquivo'],
+            'data_postagem': f['data_postagem'],
+            'descricao': f['descricao'] 
         })
     
     return jsonify(lista)
 
-# Rota para deletar a foto
 @app.route('/deletar_foto/<int:id_foto>')
 def deletar_foto(id_foto):
     if 'representante_logado' not in session:
@@ -214,26 +190,21 @@ def deletar_foto(id_foto):
     turma_sessao = str(session['representante_logado']) # Força virar texto
     conn = conectar_banco()
     
-    # Busca a foto
     foto = conn.execute('SELECT * FROM galeria WHERE id = ?', (id_foto,)).fetchone()
     
     if foto:
-        # Forçamos a comparação entre textos para evitar erro de tipo
         if str(foto['turma']) == turma_sessao:
-            # 1. Deleta o arquivo físico
             caminho = os.path.join(app.config['UPLOAD_FOLDER'], foto['nome_arquivo'])
             if os.path.exists(caminho):
                 os.remove(caminho)
             
-            # 2. Deleta do Banco
             conn.execute('DELETE FROM galeria WHERE id = ?', (id_foto,))
             conn.commit()
     
     conn.close()
     return redirect(url_for('upload_rep'))
 
-
-# SEMPRE A ÚLTIMA LINHA:
+# ÚLTIMA LINHA:
 if __name__ == '__main__':
     app.run(debug=True)    
     

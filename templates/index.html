@@ -208,11 +208,9 @@
                 <h3 id="boasVindasTurma" style="text-align: center; color: var(--cor-primaria); margin-bottom: 20px;">
                 </h3>
                 <style>
-                    /* Estilo direto no HTML para forçar a renderização */
                     .btn-menu-forca-bruta {
                         background-color: #f8f9fa !important;
                         border: 2px solid #23ad11 !important;
-                        /* O verde do seu site */
                         color: #333 !important;
                         padding: 15px 20px !important;
                         font-size: 1.1rem !important;
@@ -274,7 +272,7 @@
                     <button onclick="voltarAoMenu()" class="btn-voltar"><i class="fas fa-arrow-left"></i> Voltar ao
                         Menu</button>
 
-                <div class="filtros-galeria" style="display: flex; gap: 10px; margin: 15px 0; flex-wrap: wrap;">
+                    <div class="filtros-galeria" style="display: flex; gap: 10px; margin: 15px 0; flex-wrap: wrap;">
                         <select id="filtroMateria" onchange="aplicarFiltros()"
                             style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #23ad11;">
                             <option value="">Todas as Matérias</option>
@@ -295,13 +293,13 @@
                             style="background: #f44336; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer;">
                             <i class="fas fa-eraser"></i>
                         </button>
-                </div>
+                    </div>
 
                     <div id="galeriaFotos" class="grid-fotos"></div>
-                <div id="galeriaFotos" class="grid-fotos"></div>
+                    <div id="galeriaFotos" class="grid-fotos"></div>
+                </div>
             </div>
         </div>
-    </div>
     </div>
     </div>
 
@@ -352,6 +350,15 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <div id="visualizadorFoto" class="modal"
+        style="display:none; z-index: 10000; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center;">
+        <span
+            style="position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer;"
+            onclick="fecharVisualizador()">&times;</span>
+        <img id="fotoExpandida"
+            style="max-width: 90%; max-height: 90%; border-radius: 5px; box-shadow: 0 0 20px rgba(255,255,255,0.2);">
+    </div>
+    
 </body>
 
 </html>

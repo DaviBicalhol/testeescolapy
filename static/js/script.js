@@ -102,15 +102,35 @@ function validarSenha() {
         document.getElementById('areaLogin').style.display = "none";
         document.getElementById('areaConteudo').style.display = "block";
 
-        // NOVO: Prepara o menu e esconde as seções
-        document.getElementById('menuEscolha').style.display = "flex";
-        document.getElementById('secaoAvisos').style.display = "none";
-        document.getElementById('secaoGaleria').style.display = "none";
+        const primeiroDigito = turmaAtual.charAt(0);
+        const turmasComRegistro = ['6', '7', '8', '9'];
+
+        const secaoAvisos = document.getElementById('secaoAvisos');
+        const btnVoltar = secaoAvisos.querySelector('.btn-voltar');
+        const fraseInstrucao = secaoAvisos.querySelector('.sub-aviso');
+
+        if (turmasComRegistro.includes(primeiroDigito)) {
+
+            document.getElementById('menuEscolha').style.display = "flex";
+            secaoAvisos.style.display = "none";
+            document.getElementById('secaoGaleria').style.display = "none";
+            if (btnVoltar) btnVoltar.style.display = "block";
+            if (fraseInstrucao) fraseInstrucao.style.display = "block";
+        } else {
+            // TURMAS 1º AO 5º: Esconde o menu, o "Voltar" e a frase de instrução
+            document.getElementById('menuEscolha').style.display = "none";
+            secaoAvisos.style.display = "block";
+            document.getElementById('secaoGaleria').style.display = "none";
+
+            if (btnVoltar) btnVoltar.style.display = "none";
+            if (fraseInstrucao) fraseInstrucao.style.display = "none";
+
+            bilhetesAtuais = dados.avisos;
+            indiceAtual = bilhetesAtuais.length - 1;
+            renderizarAviso();
+        }
+
         document.getElementById('boasVindasTurma').innerText = "Olá, Turma " + turmaAtual + "!";
-
-        bilhetesAtuais = dados.avisos;
-        indiceAtual = bilhetesAtuais.length - 1;
-
     } else {
         tentativasPorTurma[turmaAtual]++;
         if (tentativasPorTurma[turmaAtual] >= 3) {
@@ -292,7 +312,7 @@ document.addEventListener("DOMContentLoaded", () => {
         listaEventos.appendChild(card);
     });
 });
-// Função para exibir o aviso (Versão Anti-Bloqueio Hostinger)
+//   Anti-Bloqueio Hostinger
 function abrirAvisoEvento(titulo, descricao) {
     const modal = document.getElementById('modalBilhetes');
     const lista = document.getElementById('listaBilhetes');
@@ -359,15 +379,15 @@ let todasAsFotosDaTurma = [];
 
 function carregarFotosPython(turma) {
     const container = document.getElementById('galeriaFotos');
-    if (!container) return; 
+    if (!container) return;
 
     container.innerHTML = "<p style='text-align:center; color:#23ad11;'><i class='fas fa-spinner fa-spin'></i> Buscando fotos...</p>";
 
     fetch(`/api/fotos/${turma}`)
         .then(res => res.json())
         .then(fotos => {
-            todasAsFotosDaTurma = fotos; 
-            limparFiltros(); 
+            todasAsFotosDaTurma = fotos;
+            limparFiltros();
         })
         .catch(err => {
             console.error("Erro na API:", err);
@@ -383,14 +403,13 @@ function aplicarFiltros() {
     const materiaSelecionada = comboMateria ? comboMateria.value : "";
     const dataSelecionada = inputData ? inputData.value : "";
 
-    container.innerHTML = ""; 
+    container.innerHTML = "";
 
     const fotosFiltradas = todasAsFotosDaTurma.filter(foto => {
         const bateMateria = materiaSelecionada === "" || foto.materia === materiaSelecionada;
 
         let bateData = true;
         if (dataSelecionada) {
-            // Converte a data do HTML (YYYY-MM-DD) para a do Python (DD/MM/YYYY)
             const partes = dataSelecionada.split('-');
             const dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
             bateData = foto.data.includes(dataFormatada);
@@ -411,7 +430,13 @@ function aplicarFiltros() {
     fotosFiltradas.forEach(f => {
         container.innerHTML += `
             <div class="card-postagem" style="margin-bottom:20px; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.08); border: 1px solid #eee;">
-                <img src="/static/img/uploads/galeria/${f.nome_arquivo}" onerror="this.parentElement.style.display='none';" style="width:100%; display:block; max-height: 400px; object-fit: cover;">
+                
+                <img src="/static/img/uploads/galeria/${f.nome_arquivo}" 
+                     onclick="abrirFotoTelaCheia(this.src)" 
+                     onerror="this.parentElement.style.display='none';" 
+                     style="width:100%; display:block; max-height: 400px; object-fit: cover; cursor: zoom-in;"
+                     title="Clique para ampliar">
+
                 <div style="padding:15px;">
                     <h4 style="margin:0 0 5px 0; color:#23ad11; font-size: 1.1rem;">${f.materia}</h4>
                     
@@ -423,9 +448,9 @@ function aplicarFiltros() {
                         </small>
 
                         <a href="/static/img/uploads/galeria/${f.nome_arquivo}" 
-                           download="Aula_${f.materia}_${f.data_postagem}.jpg" 
-                           style="text-decoration: none; color: #23ad11; font-weight: bold; font-size: 0.85rem; display: flex; align-items: center; gap: 5px;">
-                           <i class="fas fa-download"></i> Baixar
+                            download="Aula_${f.materia}_${f.data_postagem}.jpg" 
+                            style="text-decoration: none; color: #23ad11; font-weight: bold; font-size: 0.85rem; display: flex; align-items: center; gap: 5px;">
+                            <i class="fas fa-download"></i> Baixar
                         </a>
                     </div>
                 </div>
@@ -440,4 +465,22 @@ function limparFiltros() {
     if (inputData) inputData.value = "";
 
     aplicarFiltros();
-}  
+}
+function abrirFotoTelaCheia(src) {
+    const visualizador = document.getElementById('visualizadorFoto');
+    const imgExpandida = document.getElementById('fotoExpandida');
+
+    if (visualizador && imgExpandida) {
+        imgExpandida.src = src;
+        visualizador.style.display = "flex";
+        document.body.style.overflow = "hidden"; // Trava o scroll do fundo
+    }
+}
+
+function fecharVisualizador() {
+    const visualizador = document.getElementById('visualizadorFoto');
+    if (visualizador) {
+        visualizador.style.display = "none";
+        document.body.style.overflow = "auto"; // Devolve o scroll
+    }
+}
