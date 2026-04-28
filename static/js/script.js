@@ -3,7 +3,7 @@
 // ============================================================
 let turmaAtual = "";
 let tentativasPorTurma = {};
-let bilhetesAtuais = []; 
+let bilhetesAtuais = [];
 let indiceAtual = 0;
 
 // ============================================================
@@ -17,20 +17,20 @@ const bancoDeAvisos = {
     "512": { senha: "215", avisos: [{ d: "26/01/2026", t: "Nenhum aviso para hoje." }] },
     "513": { senha: "315", avisos: [{ d: "26/01/2026", t: "Nenhum aviso para hoje." }] },
     "514": { senha: "415", avisos: [{ d: "26/01/2026", t: "Nenhum aviso para hoje." }] },
-    "601": { senha: "106", avisos: [{ d: "26/01/2026", t: "Informamos que no dia 13/03 (sexta-feira), às 7h30, será realizada a palestra <b><q>Acompanhamento da Vida Escolar</q></b> do Estudante, com o palestrante e psicólogo Vinícius, da Vinibios Consultoria Educacional, destinada aos estudantes do 6º ano e seus responsáveis.<br><br> A participação das famílias é muito importante para fortalecer o acompanhamento da vida escolar dos estudantes e contribuir para o seu desenvolvimento.<br><br> Contamos com a presença de todos!" },{ d: "11/03/2026", t: "Datas das avaliações mensais: <br> <ul> <li>11/03: Ciências <li> 12/03: Matemática <li>17/03: Arte <li>19/03: História<li>20/03: Português " }] },
-    "602": { senha: "206", avisos: [{ d: "26/01/2026", t: "Informamos que no dia 13/03 (sexta-feira), às 7h30, será realizada a palestra <b><q>Acompanhamento da Vida Escolar</q></b> do Estudante, com o palestrante e psicólogo Vinícius, da Vinibios Consultoria Educacional, destinada aos estudantes do 6º ano e seus responsáveis.<br><br> A participação das famílias é muito importante para fortalecer o acompanhamento da vida escolar dos estudantes e contribuir para o seu desenvolvimento.<br><br> Contamos com a presença de todos!" },{ d: "11/03/2026", t: "Datas das avaliações mensais: <br> <ul> <li>11/03: Ciências <li> 12/03: Matemática <li>17/03: Arte <li>19/03: História<li>20/03: Português " }] },
-    "603": { senha: "306", avisos: [{ d: "26/01/2026", t: "Informamos que no dia 13/03 (sexta-feira), às 7h30, será realizada a palestra <b><q>Acompanhamento da Vida Escolar</q></b> do Estudante, com o palestrante e psicólogo Vinícius, da Vinibios Consultoria Educacional, destinada aos estudantes do 6º ano e seus responsáveis.<br><br> A participação das famílias é muito importante para fortalecer o acompanhamento da vida escolar dos estudantes e contribuir para o seu desenvolvimento.<br><br> Contamos com a presença de todos!" },{ d: "11/03/2026", t: "Datas das avaliações mensais: <br> <ul> <li>11/03: Ciências <li> 12/03: Matemática <li>16/03: Arte <li>20/03: Português e História " }] },
-    "704": { senha: "407", avisos: [{ d: "26/01/2026", t: "Atenção!<br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br>📅 Sexta-feira <br>⏰ 7h30min às 8h30min <br><br> A família que não puder comparecer nesse horário poderá retirar o livro: <br><br>📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11h <br><br> Contamos com a presença de todos. <br> <b>Atenciosamente, Equipe Gestora<b>" },{ d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>11/03: Ciências <li>12/03: Matemática <li> 13/03: Arte <li> 20/03: Português e Geografia" }] },
-    "705": { senha: "507", avisos: [{ d: "26/01/2026", t: "Atenção!<br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br>📅 Sexta-feira <br>⏰ 7h30min às 8h30min <br><br> A família que não puder comparecer nesse horário poderá retirar o livro: <br><br>📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11h <br><br> Contamos com a presença de todos. <br> <b>Atenciosamente, Equipe Gestora<b>" },{ d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>11/03: Ciências <li>12/03: Matemática <li> 13/03: Arte <li> 20/03: Português e Geografia" }] },
-    "809": { senha: "908", avisos: [{ d: "26/01/2026", t: "Atenção! <br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br>📅 Sexta-feira <br> ⏰ 16h às 17h A <br><br>família que não puder comparecer nesse horário poderá retirar o livro: <br><br>📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11<br><br>Contamos com a presença de todos. <br> <b>Atenciosamente, Equipe Gestora<b>" },{ d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>12/03: Arte <li>13/03: Ciências <li> 17/03: Geografia <li> 19/03: Matemática <li>20/03: Português" }] },
-    "811": { senha: "118", avisos: [{ d: "26/01/2026", t: "Atenção! <br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br>📅 Sexta-feira <br> ⏰ 16h às 17h A <br><br>família que não puder comparecer nesse horário poderá retirar o livro: <br><br>📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11<br><br>Contamos com a presença de todos. <br> <b>Atenciosamente, Equipe Gestora<b>" },{ d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>12/03: Arte <li>13/03: Ciências <li> 17/03: Geografia <li> 19/03: Matemática <li>20/03: Português" }] },
-    "908": { senha: "809", avisos: [{ d: "05/03/2026", t: "Atenção! <br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br> 📅 Sexta-feira, 06/03/26 <br> ⏰ 16h às 17h <br><br> A família que não puder comparecer nesse horário poderá retirar o livro: <br><br> 📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11h <br> Contamos com a presença de todos. <br> <b> Atenciosamente, Equipe Gestora <b>" },{ d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>12/03: Matemática <li>13/03: Arte <li> 17/03: Geografia <li> 19/03: Ciências" }] },
-    "910": { senha: "019", avisos: [{ d: "05/03/2026", t: "Atenção! <br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br> 📅 Sexta-feira, 06/03/26 <br> ⏰ 16h às 17h <br><br> A família que não puder comparecer nesse horário poderá retirar o livro: <br><br> 📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11h <br> Contamos com a presença de todos. <br> <b> Atenciosamente, Equipe Gestora <b>" },{ d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>12/03: Matemática <li>13/03: Arte <li> 17/03: Geografia <li>18/03: Matemática<li> 19/03: Ciências" }] },
+    "601": { senha: "106", avisos: [{ d: "26/01/2026", t: "Informamos que no dia 13/03 (sexta-feira), às 7h30, será realizada a palestra <b><q>Acompanhamento da Vida Escolar</q></b> do Estudante, com o palestrante e psicólogo Vinícius, da Vinibios Consultoria Educacional, destinada aos estudantes do 6º ano e seus responsáveis.<br><br> A participação das famílias é muito importante para fortalecer o acompanhamento da vida escolar dos estudantes e contribuir para o seu desenvolvimento.<br><br> Contamos com a presença de todos!" }, { d: "11/03/2026", t: "Datas das avaliações mensais: <br> <ul> <li>11/03: Ciências <li> 12/03: Matemática <li>17/03: Arte <li>19/03: História<li>20/03: Português " }] },
+    "602": { senha: "206", avisos: [{ d: "26/01/2026", t: "Informamos que no dia 13/03 (sexta-feira), às 7h30, será realizada a palestra <b><q>Acompanhamento da Vida Escolar</q></b> do Estudante, com o palestrante e psicólogo Vinícius, da Vinibios Consultoria Educacional, destinada aos estudantes do 6º ano e seus responsáveis.<br><br> A participação das famílias é muito importante para fortalecer o acompanhamento da vida escolar dos estudantes e contribuir para o seu desenvolvimento.<br><br> Contamos com a presença de todos!" }, { d: "11/03/2026", t: "Datas das avaliações mensais: <br> <ul> <li>11/03: Ciências <li> 12/03: Matemática <li>17/03: Arte <li>19/03: História<li>20/03: Português " }] },
+    "603": { senha: "306", avisos: [{ d: "26/01/2026", t: "Informamos que no dia 13/03 (sexta-feira), às 7h30, será realizada a palestra <b><q>Acompanhamento da Vida Escolar</q></b> do Estudante, com o palestrante e psicólogo Vinícius, da Vinibios Consultoria Educacional, destinada aos estudantes do 6º ano e seus responsáveis.<br><br> A participação das famílias é muito importante para fortalecer o acompanhamento da vida escolar dos estudantes e contribuir para o seu desenvolvimento.<br><br> Contamos com a presença de todos!" }, { d: "11/03/2026", t: "Datas das avaliações mensais: <br> <ul> <li>11/03: Ciências <li> 12/03: Matemática <li>16/03: Arte <li>20/03: Português e História " }] },
+    "704": { senha: "407", avisos: [{ d: "26/01/2026", t: "Atenção!<br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br>📅 Sexta-feira <br>⏰ 7h30min às 8h30min <br><br> A família que não puder comparecer nesse horário poderá retirar o livro: <br><br>📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11h <br><br> Contamos com a presença de todos. <br> <b>Atenciosamente, Equipe Gestora<b>" }, { d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>11/03: Ciências <li>12/03: Matemática <li> 13/03: Arte <li> 20/03: Português e Geografia" }] },
+    "705": { senha: "507", avisos: [{ d: "26/01/2026", t: "Atenção!<br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br>📅 Sexta-feira <br>⏰ 7h30min às 8h30min <br><br> A família que não puder comparecer nesse horário poderá retirar o livro: <br><br>📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11h <br><br> Contamos com a presença de todos. <br> <b>Atenciosamente, Equipe Gestora<b>" }, { d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>11/03: Ciências <li>12/03: Matemática <li> 13/03: Arte <li> 20/03: Português e Geografia" }] },
+    "809": { senha: "908", avisos: [{ d: "26/01/2026", t: "Atenção! <br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br>📅 Sexta-feira <br> ⏰ 16h às 17h A <br><br>família que não puder comparecer nesse horário poderá retirar o livro: <br><br>📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11<br><br>Contamos com a presença de todos. <br> <b>Atenciosamente, Equipe Gestora<b>" }, { d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>12/03: Arte <li>13/03: Ciências <li> 17/03: Geografia <li> 19/03: Matemática <li>20/03: Português" }] },
+    "811": { senha: "118", avisos: [{ d: "26/01/2026", t: "Atenção! <br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br>📅 Sexta-feira <br> ⏰ 16h às 17h A <br><br>família que não puder comparecer nesse horário poderá retirar o livro: <br><br>📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11<br><br>Contamos com a presença de todos. <br> <b>Atenciosamente, Equipe Gestora<b>" }, { d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>12/03: Arte <li>13/03: Ciências <li> 17/03: Geografia <li> 19/03: Matemática <li>20/03: Português" }] },
+    "908": { senha: "809", avisos: [{ d: "05/03/2026", t: "Atenção! <br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br> 📅 Sexta-feira, 06/03/26 <br> ⏰ 16h às 17h <br><br> A família que não puder comparecer nesse horário poderá retirar o livro: <br><br> 📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11h <br> Contamos com a presença de todos. <br> <b> Atenciosamente, Equipe Gestora <b>" }, { d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>12/03: Matemática <li>13/03: Arte <li> 17/03: Geografia <li> 19/03: Ciências" }] },
+    "910": { senha: "019", avisos: [{ d: "05/03/2026", t: "Atenção! <br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br> 📅 Sexta-feira, 06/03/26 <br> ⏰ 16h às 17h <br><br> A família que não puder comparecer nesse horário poderá retirar o livro: <br><br> 📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11h <br> Contamos com a presença de todos. <br> <b> Atenciosamente, Equipe Gestora <b>" }, { d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>12/03: Matemática <li>13/03: Arte <li> 17/03: Geografia <li>18/03: Matemática<li> 19/03: Ciências" }] },
 
 
-// ============================================================
-//                        AVISOS TARDE
-// ============================================================
+    // ============================================================
+    //                        AVISOS TARDE
+    // ============================================================
 
     "112": { senha: "211", avisos: [{ d: "26/01/2026", t: "Nenhum aviso para hoje." }] },
     "113": { senha: "311", avisos: [{ d: "26/01/2026", t: "Nenhum aviso para hoje." }] },
@@ -41,18 +41,18 @@ const bancoDeAvisos = {
     "304": { senha: "403", avisos: [{ d: "26/01/2026", t: "Nenhum aviso para hoje." }] },
     "315": { senha: "513", avisos: [{ d: "26/01/2026", t: "Nenhum aviso para hoje." }] },
     "316": { senha: "613", avisos: [{ d: "26/01/2026", t: "Nenhum aviso para hoje." }] },
-    "601 (Tarde)": { senha: "106", avisos: [{ d: "26/01/2026", t: "Informamos que no dia 13/03 (sexta-feira), às 7h30, será realizada a palestra <b><q>Acompanhamento da Vida Escolar</q></b> do Estudante, com o palestrante e psicólogo Vinícius, da Vinibios Consultoria Educacional, destinada aos estudantes do 6º ano e seus responsáveis.<br><br> A participação das famílias é muito importante para fortalecer o acompanhamento da vida escolar dos estudantes e contribuir para o seu desenvolvimento.<br><br> Contamos com a presença de todos!." },{ d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>17/03: Geografia e Matemática <li>18/03: Ciências <li> 20/03: Português" }] },
-    "602 (Tarde)": { senha: "206", avisos: [{ d: "26/01/2026", t: "Informamos que no dia 13/03 (sexta-feira), às 7h30, será realizada a palestra <b><q>Acompanhamento da Vida Escolar</q></b> do Estudante, com o palestrante e psicólogo Vinícius, da Vinibios Consultoria Educacional, destinada aos estudantes do 6º ano e seus responsáveis.<br><br> A participação das famílias é muito importante para fortalecer o acompanhamento da vida escolar dos estudantes e contribuir para o seu desenvolvimento.<br><br> Contamos com a presença de todos!" },{ d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>17/03: Geografia e Matemática <li>19/03: Ciências <li> 20/03: Português " }] },
+    "601 (Tarde)": { senha: "106", avisos: [{ d: "26/01/2026", t: "Informamos que no dia 13/03 (sexta-feira), às 7h30, será realizada a palestra <b><q>Acompanhamento da Vida Escolar</q></b> do Estudante, com o palestrante e psicólogo Vinícius, da Vinibios Consultoria Educacional, destinada aos estudantes do 6º ano e seus responsáveis.<br><br> A participação das famílias é muito importante para fortalecer o acompanhamento da vida escolar dos estudantes e contribuir para o seu desenvolvimento.<br><br> Contamos com a presença de todos!." }, { d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>17/03: Geografia e Matemática <li>18/03: Ciências <li> 20/03: Português" }] },
+    "602 (Tarde)": { senha: "206", avisos: [{ d: "26/01/2026", t: "Informamos que no dia 13/03 (sexta-feira), às 7h30, será realizada a palestra <b><q>Acompanhamento da Vida Escolar</q></b> do Estudante, com o palestrante e psicólogo Vinícius, da Vinibios Consultoria Educacional, destinada aos estudantes do 6º ano e seus responsáveis.<br><br> A participação das famílias é muito importante para fortalecer o acompanhamento da vida escolar dos estudantes e contribuir para o seu desenvolvimento.<br><br> Contamos com a presença de todos!" }, { d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>17/03: Geografia e Matemática <li>19/03: Ciências <li> 20/03: Português " }] },
 
 
-    "709": { senha: "907", avisos: [{ d: "26/01/2026", t: "Atenção!<br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br>📅 Sexta-feira <br>⏰ 7h30min às 8h30min <br><br> A família que não puder comparecer nesse horário poderá retirar o livro: <br><br>📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11h <br><br> Contamos com a presença de todos. <br> <b>Atenciosamente, Equipe Gestora<b>"},{ d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>11/03: Matemática <li>12/03: Português <li> 19/03: Geografia e Ciências" }] },
-    "710": { senha: "017", avisos: [{ d: "26/01/2026", t: "Atenção!<br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br>📅 Sexta-feira <br>⏰ 7h30min às 8h30min <br><br> A família que não puder comparecer nesse horário poderá retirar o livro: <br><br>📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11h <br><br> Contamos com a presença de todos. <br> <b>Atenciosamente, Equipe Gestora<b>"},{ d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>11/03: Matemática <li>12/03: Português <li> 18/03: Ciências <li>19/03: Geografia" }] },
+    "709": { senha: "907", avisos: [{ d: "26/01/2026", t: "Atenção!<br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br>📅 Sexta-feira <br>⏰ 7h30min às 8h30min <br><br> A família que não puder comparecer nesse horário poderá retirar o livro: <br><br>📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11h <br><br> Contamos com a presença de todos. <br> <b>Atenciosamente, Equipe Gestora<b>" }, { d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>11/03: Matemática <li>12/03: Português <li> 19/03: Geografia e Ciências" }] },
+    "710": { senha: "017", avisos: [{ d: "26/01/2026", t: "Atenção!<br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br>📅 Sexta-feira <br>⏰ 7h30min às 8h30min <br><br> A família que não puder comparecer nesse horário poderá retirar o livro: <br><br>📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11h <br><br> Contamos com a presença de todos. <br> <b>Atenciosamente, Equipe Gestora<b>" }, { d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>11/03: Matemática <li>12/03: Português <li> 18/03: Ciências <li>19/03: Geografia" }] },
 
 
-    "803": { senha: "308", avisos: [{ d: "26/01/2026", t: "Atenção! <br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br>📅 Sexta-feira <br> ⏰ 16h às 17h A <br><br>família que não puder comparecer nesse horário poderá retirar o livro: <br><br>📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11<br><br>Contamos com a presença de todos. <br> <b>Atenciosamente, Equipe Gestora<b>" },{ d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>12/03: Português e Matemática <li>16/03: Ciências" }] },
+    "803": { senha: "308", avisos: [{ d: "26/01/2026", t: "Atenção! <br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br>📅 Sexta-feira <br> ⏰ 16h às 17h A <br><br>família que não puder comparecer nesse horário poderá retirar o livro: <br><br>📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11<br><br>Contamos com a presença de todos. <br> <b>Atenciosamente, Equipe Gestora<b>" }, { d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>12/03: Português e Matemática <li>16/03: Ciências" }] },
 
-    "908 (Tarde)": { senha: "809", avisos: [{ d: "05/03/2026", t: "Atenção! <br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br> 📅 Sexta-feira, 06/03/26 <br> ⏰ 16h às 17h <br><br> A família que não puder comparecer nesse horário poderá retirar o livro: <br><br> 📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11h <br> Contamos com a presença de todos. <br> <b> Atenciosamente, Equipe Gestora <b>" },{ d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>13/03: Português <li>16/03: Ciências <li> 19/03: Matemática <li>20/03: Geografia" }] },
-    "911": { senha: "119", avisos: [{ d: "05/03/2026", t: "Atenção! <br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br> 📅 Sexta-feira, 06/03/26 <br> ⏰ 16h às 17h <br><br> A família que não puder comparecer nesse horário poderá retirar o livro: <br><br> 📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11h <br> Contamos com a presença de todos. <br> <b> Atenciosamente, Equipe Gestora <b>" },{ d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>13/03: Português <li>16/03: Ciências <li> 19/03: Matemática <li>20/03: Geografia" }] }
+    "908 (Tarde)": { senha: "809", avisos: [{ d: "05/03/2026", t: "Atenção! <br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br> 📅 Sexta-feira, 06/03/26 <br> ⏰ 16h às 17h <br><br> A família que não puder comparecer nesse horário poderá retirar o livro: <br><br> 📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11h <br> Contamos com a presença de todos. <br> <b> Atenciosamente, Equipe Gestora <b>" }, { d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>13/03: Português <li>16/03: Ciências <li> 19/03: Matemática <li>20/03: Geografia" }] },
+    "911": { senha: "119", avisos: [{ d: "05/03/2026", t: "Atenção! <br> Informamos que haverá reunião para entrega de livros didáticos na: <br><br> 📅 Sexta-feira, 06/03/26 <br> ⏰ 16h às 17h <br><br> A família que não puder comparecer nesse horário poderá retirar o livro: <br><br> 📌 Sexta-feira: das 13h às 15h <br>📌 Segunda-feira: das 9h às 11h <br> Contamos com a presença de todos. <br> <b> Atenciosamente, Equipe Gestora <b>" }, { d: "11/03/2026", t: "Data das avaliações mensais: <br> <ul> <li>13/03: Português <li>16/03: Ciências <li> 19/03: Matemática <li>20/03: Geografia" }] }
 };
 
 
@@ -101,16 +101,16 @@ function validarSenha() {
         tentativasPorTurma[turmaAtual] = 0;
         document.getElementById('areaLogin').style.display = "none";
         document.getElementById('areaConteudo').style.display = "block";
-        
+
         // NOVO: Prepara o menu e esconde as seções
         document.getElementById('menuEscolha').style.display = "flex";
         document.getElementById('secaoAvisos').style.display = "none";
         document.getElementById('secaoGaleria').style.display = "none";
         document.getElementById('boasVindasTurma').innerText = "Olá, Turma " + turmaAtual + "!";
-        
+
         bilhetesAtuais = dados.avisos;
         indiceAtual = bilhetesAtuais.length - 1;
-        // renderizarAviso() foi removido daqui para só rodar quando o aluno clicar no botão
+
     } else {
         tentativasPorTurma[turmaAtual]++;
         if (tentativasPorTurma[turmaAtual] >= 3) {
@@ -132,7 +132,7 @@ function validarSenha() {
 // ============================================================
 const botaoTopo = document.getElementById("btnTopo");
 
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
         if (botaoTopo) botaoTopo.style.display = "block";
     } else {
@@ -190,8 +190,7 @@ function mudarBilhete(direcao) {
 // 5. BANNER, EVENTOS E HISTÓRIA
 // ============================================================
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Eventos de clique e teclado
+document.addEventListener('DOMContentLoaded', function () {
     const btnConfirmar = document.getElementById('btnConfirmarSenha');
     const campoSenha = document.getElementById('campoSenha');
     if (btnConfirmar) btnConfirmar.addEventListener('click', validarSenha);
@@ -208,7 +207,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
-    // História Fade-in
     const blocos = document.querySelectorAll('.bloco-historia');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('aparecer'); });
@@ -220,12 +218,12 @@ function fecharModal() { document.getElementById('modalBilhetes').style.display 
 function voltarAoTopo() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
 // --- LÓGICA DO CALENDÁRIO DE EVENTOS ---
-    document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const listaEventos = document.getElementById('lista-eventos');
 
     const eventos = [
-        { 
-            data: '2026-02-26', 
+        {
+            data: '2026-02-26',
             titulo: 'Retorno da Escola Integrada',
             descricao: 'Prezadas famílias,<br><br>Informamos que amanhã, 26/02 (quinta-feira), terão início as aulas da Escola Integrada para os estudantes veteranos, ou seja, aqueles que já frequentavam a Integrada no ano de 2025.<br><br>Neste primeiro momento, o atendimento será destinado apenas a esses alunos, para que possamos organizar as turmas e acolher as crianças com tranquilidade.<br><br>Em breve, enviaremos novas orientações sobre o início para os demais estudantes.'
         },
@@ -242,7 +240,7 @@ function voltarAoTopo() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
         const card = document.createElement('div');
         card.classList.add('evento-card');
-        card.style.cursor = 'pointer'; 
+        card.style.cursor = 'pointer';
 
         if (diffDias >= 0 && diffDias <= 7) card.classList.add('evento-proximo');
 
@@ -255,36 +253,65 @@ function voltarAoTopo() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
             
         `;
 
-        // Abrir o aviso ao clicar
-        card.onclick = () => abrirAvisoEvento(evento.titulo, evento.descricao);
+        card.onclick = () => {
+            const modal = document.getElementById('modalBilhetes');
+            const areaLogin = document.getElementById('areaLogin');
+            const areaConteudo = document.getElementById('areaConteudo');
+            const menuEscolha = document.getElementById('menuEscolha');
+            const secaoAvisos = document.getElementById('secaoAvisos');
+            const lista = document.getElementById('listaBilhetes');
+            const btnVoltar = secaoAvisos.querySelector('.btn-voltar');
+            const fraseSubAviso = secaoAvisos.querySelector('.sub-aviso');
 
+            if (areaLogin) areaLogin.style.display = "none";
+            if (menuEscolha) menuEscolha.style.display = "none";
+            if (document.getElementById('boasVindasTurma')) {
+                document.getElementById('boasVindasTurma').style.display = "none";
+            }
+
+            if (btnVoltar) btnVoltar.style.display = "none";
+            if (fraseSubAviso) fraseSubAviso.style.display = "none";
+
+            if (areaConteudo) areaConteudo.style.display = "block";
+            if (secaoAvisos) secaoAvisos.style.display = "block";
+
+            document.getElementById('tituloTurma').innerText = evento.titulo;
+            lista.innerHTML = `
+        <div class="bilhete-item">
+            <p style="font-size: 1.1rem; line-height: 1.6; color: #333;">${evento.descricao}</p>
+        </div>
+    `;
+
+            document.getElementById('indicadorBilhete').innerText = "";
+            document.getElementById('btnAnterior').style.visibility = "hidden";
+            document.getElementById('btnProximo').style.visibility = "hidden";
+
+            // 6. ABRE O MODAL
+            if (modal) modal.style.display = "block";
+        };
         listaEventos.appendChild(card);
     });
 });
 // Função para exibir o aviso (Versão Anti-Bloqueio Hostinger)
 function abrirAvisoEvento(titulo, descricao) {
-    var modal = document.getElementById('modalBilhetes');
-    var areaLogin = document.getElementById('areaLogin');
-    var areaConteudo = document.getElementById('areaConteudo');
-    var lista = document.getElementById('listaBilhetes');
-    
+    const modal = document.getElementById('modalBilhetes');
+    const lista = document.getElementById('listaBilhetes');
+
     document.getElementById('tituloTurma').innerText = titulo;
-    
-    if(areaLogin) areaLogin.style.display = "none";
-    if(areaConteudo) areaConteudo.style.display = "block";
-    
-    lista.innerHTML = "";
-    var divItem = document.createElement("div");
-    divItem.className = "bilhete-item";
-    
-    var paragrafo = document.createElement("p");
-    paragrafo.innerHTML = descricao; 
-    
-    divItem.appendChild(paragrafo);
-    lista.appendChild(divItem);
-    
-    if(modal) modal.style.display = "block";
-} // <--- O ERRO ESTAVA AQUI! Faltava essa chave para fechar a função.
+
+    lista.innerHTML = `
+        <div class="bilhete-item" style="display: block !important; opacity: 1 !important;">
+            <p style="color: #333; line-height: 1.6;">${descricao}</p>
+        </div>
+    `;
+
+    document.getElementById('indicadorBilhete').innerText = "";
+    document.getElementById('btnAnterior').style.visibility = "hidden";
+    document.getElementById('btnProximo').style.visibility = "hidden";
+
+    // Abre o modal
+    if (modal) modal.style.display = "block";
+}
 
 // ============================================================
 // 6. FUNÇÕES DO NOVO MENU E GALERIA
@@ -299,16 +326,15 @@ function mostrarSecao(tipo) {
 
     if (menu) menu.style.display = "none";
     if (boasVindas) boasVindas.style.display = "none";
-    
+
     if (tipo === 'avisos') {
         if (avisos) avisos.style.display = "block";
         if (galeria) galeria.style.display = "none";
-        renderizarAviso(); 
+        renderizarAviso();
     } else if (tipo === 'galeria') {
         if (galeria) galeria.style.display = "block";
         if (avisos) avisos.style.display = "none";
-        
-        // Chamada para a função que busca no Python
+
         carregarFotosPython(turmaAtual);
     }
 }
@@ -329,20 +355,19 @@ function voltarAoMenu() {
 // 7. INTEGRAÇÃO DINÂMICA COM O BANCO DE DADOS (PYTHON) E FILTROS
 // ============================================================
 
-// Esta variável PRECISA ficar solta aqui fora para guardar as fotos
-let todasAsFotosDaTurma = []; 
+let todasAsFotosDaTurma = [];
 
 function carregarFotosPython(turma) {
     const container = document.getElementById('galeriaFotos');
-    if (!container) return; // Segurança
+    if (!container) return; 
 
     container.innerHTML = "<p style='text-align:center; color:#23ad11;'><i class='fas fa-spinner fa-spin'></i> Buscando fotos...</p>";
 
     fetch(`/api/fotos/${turma}`)
         .then(res => res.json())
         .then(fotos => {
-            todasAsFotosDaTurma = fotos; // Salva as fotos na memória do navegador
-            limparFiltros(); // Zera os botões de filtro e mostra todas as fotos
+            todasAsFotosDaTurma = fotos; 
+            limparFiltros(); 
         })
         .catch(err => {
             console.error("Erro na API:", err);
@@ -352,22 +377,17 @@ function carregarFotosPython(turma) {
 
 function aplicarFiltros() {
     const container = document.getElementById('galeriaFotos');
-    
-    // Pega os valores selecionados (com verificação de segurança)
     const comboMateria = document.getElementById('filtroMateria');
     const inputData = document.getElementById('filtroData');
-    
+
     const materiaSelecionada = comboMateria ? comboMateria.value : "";
-    const dataSelecionada = inputData ? inputData.value : ""; 
+    const dataSelecionada = inputData ? inputData.value : "";
 
-    container.innerHTML = ""; // Limpa a tela para desenhar as fotos filtradas
+    container.innerHTML = ""; 
 
-    // Filtra a lista principal
     const fotosFiltradas = todasAsFotosDaTurma.filter(foto => {
-        // 1. Filtro de Matéria
         const bateMateria = materiaSelecionada === "" || foto.materia === materiaSelecionada;
-        
-        // 2. Filtro de Data
+
         let bateData = true;
         if (dataSelecionada) {
             // Converte a data do HTML (YYYY-MM-DD) para a do Python (DD/MM/YYYY)
@@ -379,7 +399,6 @@ function aplicarFiltros() {
         return bateMateria && bateData;
     });
 
-    // Se o filtro foi muito rigoroso e não sobrou nada:
     if (fotosFiltradas.length === 0) {
         container.innerHTML = `
             <div style="text-align:center; padding:30px; color:#888; grid-column: 1/-1;">
@@ -389,7 +408,6 @@ function aplicarFiltros() {
         return;
     }
 
-// Desenha as fotos que passaram no filtro
     fotosFiltradas.forEach(f => {
         container.innerHTML += `
             <div class="card-postagem" style="margin-bottom:20px; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.08); border: 1px solid #eee;">
@@ -417,11 +435,9 @@ function aplicarFiltros() {
 function limparFiltros() {
     const comboMateria = document.getElementById('filtroMateria');
     const inputData = document.getElementById('filtroData');
-    
-    // Zera os inputs visuais
+
     if (comboMateria) comboMateria.value = "";
     if (inputData) inputData.value = "";
-    
-    // Manda aplicar o filtro (como está tudo vazio, ele mostra todas as fotos)
+
     aplicarFiltros();
-}
+}  
